@@ -1,29 +1,37 @@
 package ru.ifmo.ctddev.segal.hw2;
 
-import golem.matrix.Matrix;
 import org.jetbrains.annotations.NotNull;
+import ru.ifmo.ctddev.segal.hw2.matrix.Matrix;
+
+import static ru.ifmo.ctddev.segal.hw2.matrix.Matrix.*;
+
 
 /**
  * Created by dimatomp on 27.03.16.
  */
-public interface IterativeSolver<T> extends SystemSolver<T> {
-    @NotNull default Matrix<T> solve(@NotNull Matrix<T> coefficients, @NotNull Matrix<T> free, @NotNull Matrix<T> initialApprox) {
+public interface IterativeSolver extends SystemSolver {
+    @NotNull
+    default Matrix solve(@NotNull Matrix coefficients, @NotNull Matrix free, @NotNull Matrix initialApprox) {
         return solve(coefficients, free, initialApprox, ITER_DEFAULT);
     }
 
 
-    @NotNull default Matrix<T> solve(@NotNull Matrix<T> coefficients, @NotNull Matrix<T> free, @NotNull IterativeStopPredicate stopPredicate) {
-        return solve(coefficients, free, free.getFactory().zeros(free.numRows(), 1), stopPredicate);
+    @NotNull
+    default Matrix solve(@NotNull Matrix coefficients, @NotNull Matrix free, @NotNull IterativeStopPredicate stopPredicate) {
+        return solve(coefficients, free, zeros(free.rows(), 1), stopPredicate);
     }
 
-    @NotNull @Override default Matrix<T> solve(@NotNull Matrix<T> coefficients, @NotNull Matrix<T> free) {
+    @NotNull
+    @Override
+    default Matrix solve(@NotNull Matrix coefficients, @NotNull Matrix free) {
         return solve(coefficients, free, ITER_DEFAULT);
     }
 
-    @NotNull Matrix<T> solve(@NotNull Matrix<T> coefficients,
-                             @NotNull Matrix<T> free,
-                             @NotNull Matrix<T> initialApprox,
-                             @NotNull IterativeStopPredicate predicate);
+    @NotNull
+    Matrix solve(@NotNull Matrix coefficients,
+                 @NotNull Matrix free,
+                 @NotNull Matrix initialApprox,
+                 @NotNull IterativeStopPredicate predicate);
 
-    IterativeStopPredicate ITER_DEFAULT = new IterativeStopPredicate.NumIterations(100);
+    IterativeStopPredicate ITER_DEFAULT = new NumIterationsPredicate(100);
 }

@@ -1,12 +1,13 @@
 package ru.ifmo.ctddev.segal.hw2;
 
-import golem.matrix.Matrix;
 import org.jetbrains.annotations.NotNull;
+import ru.ifmo.ctddev.segal.hw2.matrix.Matrix;
 
 /**
  * @author itegulov
  */
-public interface SystemSolver<T> {
+public interface SystemSolver {
 
-    @NotNull Matrix<T> solve(@NotNull Matrix<T> coefficients, @NotNull Matrix<T> free);
+    @NotNull
+    Matrix solve(@NotNull Matrix coefficients, @NotNull Matrix free);
 }

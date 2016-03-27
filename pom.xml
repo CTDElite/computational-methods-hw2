@@ -9,37 +9,43 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <kotlin.version>1.0.1-1</kotlin.version>
+        <scala.version>2.11.8</scala.version>
         <java.version>1.8</java.version>
     </properties>
 
+    <pluginRepositories>
+        <pluginRepository>
+            <id>central</id>
+            <url>https://repo1.maven.org/maven2</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </pluginRepository>
+    </pluginRepositories>
+
     <repositories>
-        <!-- JitPack fetches dependencies from GitHub -->
         <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
+            <id>central</id>
+            <url>https://repo1.maven.org/maven2</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
         </repository>
     </repositories>
 
     <dependencies>
-        <!-- Kotlin dependencies -->
+        <!-- Scala dependencies -->
         <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib</artifactId>
-            <version>${kotlin.version}</version>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>${scala.version}</version>
         </dependency>
 
         <!-- Math dependencies -->
         <dependency>
-            <groupId>com.github.kyonifer</groupId>
-            <artifactId>golem</artifactId>
-            <version>master-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.ejml</groupId>
-            <artifactId>all</artifactId>
-            <version>0.29</version>
+            <groupId>org.spire-math</groupId>
+            <artifactId>spire_2.11</artifactId>
+            <version>0.11.0</version>
         </dependency>
 
         <!-- Workflow control dependencies -->
@@ -61,41 +67,27 @@
     <build>
         <plugins>
             <plugin>
-                <artifactId>kotlin-maven-plugin</artifactId>
-                <groupId>org.jetbrains.kotlin</groupId>
-                <version>${kotlin.version}</version>
-
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+                <version>3.2.1</version>
                 <executions>
                     <execution>
-                        <id>compile</id>
-                        <phase>process-sources</phase>
                         <goals>
                             <goal>compile</goal>
+                            <goal>testCompile</goal>
                         </goals>
-                        <configuration>
-                            <sourceDirs>
-                                <source>src/main/java</source>
-                                <source>src/main/kotlin</source>
-                                <source>src/main/resources</source>
-                            </sourceDirs>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>test-compile</id>
-                        <phase>process-test-sources</phase>
-                        <goals>
-                            <goal>test-compile</goal>
-                        </goals>
-                        <configuration>
-                            <sourceDirs>
-                                <source>src/test/java</source>
-                                <source>src/test/kotlin</source>
-                                <source>src/test/resources</source>
-                            </sourceDirs>
-                        </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <sourceDirs>
+                        <source>src/main/java</source>
+                        <source>src/main/scala</source>
+                        <source>src/main/resources</source>
+                        <source>src/test/java</source>
+                        <source>src/test/scala</source>
+                        <source>src/test/resources</source>
+                    </sourceDirs>
+                </configuration>
             </plugin>
 
             <plugin>
