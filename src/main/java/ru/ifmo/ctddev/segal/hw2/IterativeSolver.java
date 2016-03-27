@@ -13,7 +13,7 @@ public interface IterativeSolver<T> extends SystemSolver<T> {
 
 
     @NotNull default Matrix<T> solve(@NotNull Matrix<T> coefficients, @NotNull Matrix<T> free, @NotNull IterativeStopPredicate stopPredicate) {
-        return solve(coefficients, free, free.getFactory().zeros(free.numCols()), stopPredicate);
+        return solve(coefficients, free, free.getFactory().zeros(free.numRows(), 1), stopPredicate);
     }
 
     @NotNull @Override default Matrix<T> solve(@NotNull Matrix<T> coefficients, @NotNull Matrix<T> free) {
@@ -25,5 +25,5 @@ public interface IterativeSolver<T> extends SystemSolver<T> {
                              @NotNull Matrix<T> initialApprox,
                              @NotNull IterativeStopPredicate predicate);
 
-    IterativeStopPredicate ITER_DEFAULT = new NumIterations(100);
+    IterativeStopPredicate ITER_DEFAULT = new IterativeStopPredicate.NumIterations(100);
 }
