@@ -71,8 +71,8 @@ struct matrix {
 
     matrix<T> transpose() const {
         std::vector<std::vector<T>> ans(cols, std::vector<T>(rows));
-        for (size_t i = 0; i < rows; i++) {
-            for (size_t j = 0; j < cols; j++) {
+        for (size_t i = 0; i < cols; i++) {
+            for (size_t j = 0; j < rows; j++) {
                 ans[i][j] = data[j][i];
             }
         }
