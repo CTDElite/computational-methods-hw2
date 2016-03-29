@@ -59,6 +59,23 @@ struct matrix {
         return ans;
     }
 
+    matrix<T> transpose() const {
+        std::vector<std::vector<T>> ans(cols, std::vector<T>(rows));
+        for (size_t i = 0; i < rows; i++) {
+            for (size_t j = 0; j < cols; j++) {
+                ans[i][j] = data[j][i];
+            }
+        }
+        return ans;
+    }
+
+    T getAsT() const {
+        assert(rows == 1);
+        assert(cols == 1);
+        return data[0][0];
+    }
+
+
     const size_t rows;
     const size_t cols;
     const std::vector<std::vector<T>> data;
