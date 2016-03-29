@@ -63,7 +63,7 @@ struct matrix {
         std::vector<std::vector<T>> ans(rows, std::vector<T>(cols));
         for (size_t i = 0; i < rows; i++) {
             for (size_t j = 0; j < cols; j++) {
-                ans[i][j] *= num;
+                ans[i][j] = data[i][j] * num;
             }
         }
         return ans;
