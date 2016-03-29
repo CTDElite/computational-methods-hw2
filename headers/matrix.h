@@ -59,6 +59,16 @@ struct matrix {
         return ans;
     }
 
+    matrix<T> operator*(const T& num) const {
+        std::vector<std::vector<T>> ans(rows, std::vector<T>(cols));
+        for (size_t i = 0; i < rows; i++) {
+            for (size_t j = 0; j < cols; j++) {
+                ans[i][j] *= num;
+            }
+        }
+        return ans;
+    }
+
     matrix<T> transpose() const {
         std::vector<std::vector<T>> ans(cols, std::vector<T>(rows));
         for (size_t i = 0; i < rows; i++) {
