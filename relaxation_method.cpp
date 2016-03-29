@@ -47,13 +47,13 @@ vector<double> nextSolve() {
     for (int i = 0; i < n; i++) {
         nextSolution.push_back(w * tmpSolution[i] + (1 - w) * currentSolution[i]);
     }
-//	cout << "Øàã " << cnt << ". Òåêóùåå ðåøåíèå: (";
+//	cout << "Ð¨Ð°Ð³ " << cnt << ". Ð¢ÐµÐºÑƒÑ‰ÐµÐµ Ñ€ÐµÑˆÐµÐ½Ð¸Ðµ: (";
 //	for (int i = 0; i < n; i++) {
 //		cout << nextSolution[i];
 //		if (i < n - 1) cout << ", ";
 //		else cout << ") ";
 //	}
-//	cout << "Îøèáêà = " << getError(nextSolution) << endl;
+//	cout << "ÐžÑˆÐ¸Ð±ÐºÐ° = " << getError(nextSolution) << endl;
 	return nextSolution;
 }
 
@@ -91,7 +91,7 @@ int main() {
     }
     cout.precision(6);
 
-    cout << "Ðåøåíèå óðàâíåíèÿ:" << endl;
+    cout << "Ð ÐµÑˆÐµÐ½Ð¸Ðµ ÑƒÑ€Ð°Ð²Ð½ÐµÐ½Ð¸Ñ:" << endl;
     for (int i = 0; i < n; i++) {
     	for (int j = 0; j < n; j++) {
     		cout << matrix[i][j] << "*x_" << j + 1 << " + ";
@@ -107,7 +107,7 @@ int main() {
 		init();
 		w = ww;
 	    vector<double> solution = getSolution(eps);
-	    cout << "Êîëè÷åñòâî øàãîâ = " << cnt << ", w = " << w << " Íàéäåííîå ðåøåíèå: (";
+	    cout << "ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ÑˆÐ°Ð³Ð¾Ð² = " << cnt << ", w = " << w << " ÐÐ°Ð¹Ð´ÐµÐ½Ð½Ð¾Ðµ Ñ€ÐµÑˆÐµÐ½Ð¸Ðµ: (";
 		for (int i = 0; i < n; i++) {
 			cout << solution[i];
 			if (i < n - 1) cout << ", ";

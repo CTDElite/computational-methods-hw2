@@ -24,6 +24,7 @@ def seidel_method(A, b, x_init=None, n_steps=100, eps=None, log=False):
     return x1
 
 if __name__ == '__main__':
+    input('Enter something: ')
     print('Enter the matrix:')
     A = [list(map(float, input().split()))]
     for i in range(len(A[0]) - 1):
@@ -34,12 +35,7 @@ if __name__ == '__main__':
                 continue
             break
         A.append(next)
-    while True:
-        b = list(map(float, input('Enter the free value: ').split()))
-        if len(b) != len(A):
-            print('Wrong number of free values, type again')
-            continue
-        break
+    b = [float(input()) for i in range(len(A))]
     A = np.mat(A, dtype=float)
     solution = seidel_method(A, b, log=True, eps=1e-4).T
     print('Seidel solution:', solution)
