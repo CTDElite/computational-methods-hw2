@@ -12,6 +12,8 @@
 
 class jacobi_solver : public iterative_solver<double> {
 public:
+    using iterative_solver::solve;
+
     matrix<double> solve(const matrix<double> &coefficients, const matrix<double> &free,
                          const matrix<double> &initial_approx, size_t iterations) override {
         size_t n = coefficients.rows;

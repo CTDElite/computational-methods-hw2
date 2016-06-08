@@ -12,6 +12,7 @@
 template <class T>
 class gradient_descent_solver : public iterative_solver<T> {
 public:
+    using iterative_solver<T>::solve;
 
     matrix<T> solve(const matrix<T> &coefficients, const matrix<T> &free,
                     const matrix<T> &initial_approx, size_t iterations) {

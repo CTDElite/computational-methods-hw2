@@ -8,7 +8,6 @@
 #include "gauss_solver.h"
 #include <gradient_descent_solver.h>
 #include <jacobi_solver.h>
-#include <memory>
 
 using namespace std;
 
@@ -26,11 +25,11 @@ int main() {
         cin >> free[i][0];
     }
 
-    unique_ptr<iterative_solver<double>> jacobi = make_unique<jacobi_solver>();
-    cout << "JACOBI: " << endl << jacobi->solve(input, free) << endl;
+    jacobi_solver jacobi;
+    cout << "JACOBI: " << endl << jacobi.solve(input, free) << endl;
 
-    unique_ptr<iterative_solver<double>> gradient = make_unique<gradient_descent_solver<double>>();
-    cout << "GRADIENT: " << endl << gradient->solve(input, free) << endl;
+    gradient_descent_solver<double> gradient;
+    cout << "GRADIENT: " << endl << gradient.solve(input, free) << endl;
 
     gauss_solver<double> solver;
     cout << "GAUSS: " << endl << solver.solve(input, free) << endl;
